@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visor de Prácticas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f7f9fb;
+      color: #333;
+    }
+
+    .menu {
+      padding: 0.5rem;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.075);
+    }
+
+    .link {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 50px;
+      border-radius: 8px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transform-origin: center left;
+      transition: width 0.2s ease-in;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .link:hover,
+    .link:focus {
+      outline: 0;
+      width: 130px;
+    }
+
+    .link-icon {
+      width: 28px;
+      height: 28px;
+      position: absolute;
+      left: 18px;
+    }
+
+    .link-title {
+      transform: translateX(100%);
+      transition: transform 0.2s ease-in;
+      transform-origin: center right;
+      display: block;
+      text-align: center;
+      text-indent: 28px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e88e5;
+    }
+
+    input[type="text"] {
+      margin: 20px auto;
+      display: block;
+      width: 50%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 80px;
+    }
+ 
+
+    table {
+      width: 100%;
+      min-width: 320px;
+      max-width: 600px;
+      margin: 24px auto 0 auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #fff;
+      box-shadow: 0 6px 32px 0 rgba(30,136,229,0.10), 0 1.5px 8px 0 rgba(30,136,229,0.07);
+      font-size: 15px;
+      border-radius: 18px;
+      overflow: hidden;
+      animation: fadeInTable 1s;
+    }
+    @keyframes fadeInTable {
+      from { opacity: 0; transform: translateY(40px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    th, td {
+      padding: 6px 10px;
+      border-bottom: 1.5px solid #e3eaf3;
+      text-align: left;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    th {
+      background: linear-gradient(90deg, #58a2e4 60%, #1e88e5 100%);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      font-size: 16px;
+      z-index: 2;
+      border-bottom: 2.5px solid #1976d2;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(30,136,229,0.07);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr {
+      border-radius: 12px;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    tr:hover {
+      background: linear-gradient(90deg, #e3f2fd 60%, #b3e5fc 100%);
+      box-shadow: 0 2px 16px rgba(30,136,229,0.10);
+    }
+    td a {
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 6px 12px 6px 6px;
+      background: #f7f9fb;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(30,136,229,0.07);
+      display: inline-flex;
+      align-items: center;
+    }
+    td a:hover {
+      background: #1e88e5;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(30,136,229,0.13);
+    }
+  </style>
+</head>
+<body>
+  
+
+  <nav>
+    <div class="menu" style="padding:0; background:none; box-shadow:none; border-radius:0; display:flex; align-items:center;">
+      <div style="flex:0 0 auto;">
+        <a href="panel.html" class="link" style="margin-right: 18px;">
+          <span class="link-icon" style="left: 12px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#1976d2"/><path d="M15.5 19l-7-7 7-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="link-title">Atrás</span>
+        </a>
+      </div>
+      <div style="flex:1; display:flex; justify-content:center; gap:8px;">
+        <a id="perfil-item" href="#" class="link">
+          <span class="link-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#8e24aa"/><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#fff"/></svg>
+          </span>
+          <span class="link-title">Perfil</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Visor de Hojas de Vida</h1>
+
+  <div style="text-align:center;margin:18px 0;">
+    <button id="btn-reporte-docs" style="background:linear-gradient(90deg,#43e97b,#38f9d7);color:#fff;border:none;padding:12px 32px;border-radius:18px;font-size:17px;font-weight:600;box-shadow:0 2px 12px #38f9d733;cursor:pointer;transition:background 0.2s;">Reporte de Documentos</button>
+  </div>
+
+  <div id="modal-reporte-docs" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,40,60,0.18);z-index:2000;align-items:center;justify-content:center;">
+    <div style="background:#fff;max-width:700px;width:95vw;padding:32px 18px 18px 18px;border-radius:22px;box-shadow:0 8px 40px rgba(30,136,229,0.18);margin:auto;position:relative;display:flex;flex-direction:column;align-items:center;">
+      <div style="width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <span style="font-size:22px;font-weight:700;color:#1e88e5;">Reporte de Documentos Entregados</span>
+        <button id="close-reporte-docs" style="background:#e53935;color:#fff;padding:6px 18px;border:none;border-radius:20px;font-weight:bold;cursor:pointer;">Cerrar</button>
+      </div>
+      <div style="overflow-x:auto;width:100%;">
+        <table id="tabla-reporte-docs" style="width:100%;min-width:400px;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px #38f9d733;">
+          <thead>
+            <tr>
+              <th>NOMBRE</th>
+              <th>IDENTIFICACION</th>
+              <th>Hoja de Vida</th>
+              <th>Paz y Salvo</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="search-container" style="display:flex;justify-content:center;margin:24px 0 0 0;width:100%;">
+    <div style="position:relative;max-width:420px;width:100%;">
+      <input type="text" id="search" class="search-input" placeholder="Buscar por nombre, cédula, empresa, programa o fecha..." style="width:100%;padding:12px 44px 12px 18px;font-size:16px;border-radius:80px;border:1.5px solid #b3c6e0;box-shadow:0 2px 8px #1e88e51a;outline:none;transition:border 0.2s,box-shadow 0.2s;">
+      <span class="search-icon" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7.5" stroke="#1e88e5" stroke-width="2"/><path d="M20 20L16.2 16.2" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+    </div>
+  </div>
+
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>NOMBRE</th>
+        <th>IDENTIFICACION</th>
+        <th>PROGRAMA</th>
+        <th>EMPRESA</th>
+        <th>PDF</th>
+        <th style="min-width:110px;max-width:130px;width:120px;">FECHA DE INICIO</th>
+        <th>FECHA DE FINALIZACIÓN</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="pdf-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,40,60,0.38);z-index:1000;align-items:center;justify-content:center;">
+    <div style="background:#fff;max-width:820px;width:95vw;padding:24px 18px 18px 18px;border-radius:22px;box-shadow:0 8px 40px rgba(30,136,229,0.18);margin:auto;position:relative;display:flex;flex-direction:column;align-items:center;">
+      <div style="margin-bottom:10px;width:100%;display:flex;justify-content:flex-end;gap:10px;">
+        <button id="close-pdf" style="background:#e53935;color:#fff;padding:8px 18px;border:none;border-radius:20px;font-weight:bold;cursor:pointer;">Cerrar visor</button>
+        <a id="download-pdf" href="#" download target="_blank" style="background:#1e88e5;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:bold;">Descargar PDF</a>
+      </div>
+      <iframe id="pdf-viewer" src="" width="100%" height="500px" style="border-radius:14px;border:1.5px solid #1976d2;box-shadow:0 2px 16px rgba(30,136,229,0.10);"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // REEMPLAZA esta URL por tu propia URL de Google Apps Script
+    const SHEET_URL = "https://script.google.com/macros/s/AKfycby_UBC_ybDiy3CPsjqwP-CLij5EeLuE1-eOLXvSYthO9r10S60dJBjxq-G0j6qz3Lg/exec";
+
+    let globalData = [];
+    fetch(SHEET_URL)
+      .then(response => response.json())
+      .then(data => {
+        globalData = data;
+        const tbody = document.querySelector('#tabla tbody');
+        data.forEach(row => {
+          // Si el enlace es de Google Drive, generar dos URLs: una para visualizar y otra para descargar
+          let pdfUrl = row.PDF;
+          let pdfDownloadUrl = row.PDF;
+          if (pdfUrl && pdfUrl.includes('drive.google.com')) {
+            let match = pdfUrl.match(/\/d\/(.*?)(\/|$)/) || pdfUrl.match(/id=([^&]+)/);
+            let fileId = match ? match[1] : null;
+            if (fileId) {
+              pdfUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+              pdfDownloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            }
+          }
+          // Formatear fechas a YYYY-MM-DD
+          function formatearFecha(fecha) {
+            if (!fecha) return '';
+            if (/^\d{4}-\d{2}-\d{2}$/.test(fecha)) return fecha;
+            const match = fecha.match(/^(\d{4}-\d{2}-\d{2})/);
+            return match ? match[1] : fecha;
+          }
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${row.NOMBRE || ''}</td>
+            <td>${row.IDENTIFICACION || ''}</td>
+            <td>${row.PROGRAMA || ''}</td>
+            <td>${row.EMPRESA || ''}</td>
+            <td>
+              ${pdfUrl ? `<a href="#" class="ver-pdf" data-pdf="${pdfUrl}" data-download="${pdfDownloadUrl}" style="color:#1e88e5;font-weight:bold;display:inline-flex;align-items:center;"><span style='display:inline-flex;align-items:center;margin-right:6px;'><svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none'><rect width='24' height='24' rx='4' fill='#F44336'/><path d='M7 17h10M8.5 7.5h7a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5Zm1.5 2.5h4M10 12h4' stroke='#fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg></span>Ver PDF</a>` : ''}
+            </td>
+            <td>${formatearFecha(row.INICIO)}</td>
+            <td>${formatearFecha(row.FINALIZACION)}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+        // Agregar evento para mostrar PDF en visor
+        document.querySelectorAll('.ver-pdf').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pdfUrl = this.getAttribute('data-pdf');
+            const pdfDownloadUrl = this.getAttribute('data-download');
+            const viewer = document.getElementById('pdf-viewer');
+            const modal = document.getElementById('pdf-modal');
+            const downloadBtn = document.getElementById('download-pdf');
+            viewer.src = pdfUrl;
+            downloadBtn.href = pdfDownloadUrl;
+            // Forzar descarga inmediata al hacer click en el botón de descarga
+            downloadBtn.onclick = function(ev) {
+              ev.preventDefault();
+              window.open(pdfDownloadUrl, '_blank');
+            };
+            modal.style.display = 'flex';
+          });
+        });
+      });
+    // Botón y modal de reporte de documentos
+    document.getElementById('btn-reporte-docs').onclick = function() {
+      const modal = document.getElementById('modal-reporte-docs');
+      const tbody = document.querySelector('#tabla-reporte-docs tbody');
+      tbody.innerHTML = '';
+      // Simulación: si en los datos hay columnas HOJA_VIDA y PAZ_SALVO, si no, marcar aleatorio
+      globalData.forEach(row => {
+        // Si tu hoja de cálculo tiene columnas HOJA_VIDA y PAZ_SALVO, usa row.HOJA_VIDA, row.PAZ_SALVO
+        // Si no, aquí se simula aleatorio para mostrar el ejemplo
+        let hojaVida = row.HOJA_VIDA !== undefined ? row.HOJA_VIDA : (Math.random() > 0.5 ? 'Entregado' : 'Pendiente');
+        let pazSalvo = row.PAZ_SALVO !== undefined ? row.PAZ_SALVO : (Math.random() > 0.5 ? 'Entregado' : 'Pendiente');
+        tbody.innerHTML += `
+          <tr>
+            <td>${row.NOMBRE || ''}</td>
+            <td>${row.IDENTIFICACION || ''}</td>
+            <td style="color:${hojaVida==='Entregado'?'#43e97b':'#e53935'};font-weight:600;">${hojaVida}</td>
+            <td style="color:${pazSalvo==='Entregado'?'#43e97b':'#e53935'};font-weight:600;">${pazSalvo}</td>
+          </tr>
+        `;
+      });
+      modal.style.display = 'flex';
+    };
+    document.getElementById('close-reporte-docs').onclick = function() {
+      document.getElementById('modal-reporte-docs').style.display = 'none';
+    };
+
+    document.getElementById("search").addEventListener("input", function () {
+      const filtro = this.value.toLowerCase();
+      const filas = document.querySelectorAll("#tabla tbody tr");
+      filas.forEach(fila => {
+        // Columnas: 0=NOMBRE, 1=IDENTIFICACION, 2=PROGRAMA, 3=EMPRESA, 4=PDF, 5=INICIO, 6=FINALIZACION
+        const NOMBRE = fila.cells[0].textContent.toLowerCase();
+        const IDENTIFICACION = fila.cells[1].textContent.toLowerCase();
+        const PROGRAMA = fila.cells[2].textContent.toLowerCase();
+        const EMPRESA = fila.cells[3].textContent.toLowerCase();
+        const INICIO = fila.cells[5].textContent.toLowerCase();
+        const FINALIZACION = fila.cells[6].textContent.toLowerCase();
+        const coincide = NOMBRE.includes(filtro) || IDENTIFICACION.includes(filtro) || PROGRAMA.includes(filtro) || EMPRESA.includes(filtro) || INICIO.includes(filtro) || FINALIZACION.includes(filtro);
+        fila.style.display = coincide ? "" : "none";
+      });
+    });
+
+    // Cerrar visor PDF (modal)
+    document.addEventListener('DOMContentLoaded', function() {
+      const closeBtn = document.getElementById('close-pdf');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          document.getElementById('pdf-modal').style.display = 'none';
+          document.getElementById('pdf-viewer').src = '';
+        });
+      }
+      // Cerrar modal al hacer click fuera del contenido
+      const modal = document.getElementById('pdf-modal');
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.style.display = 'none';
+            document.getElementById('pdf-viewer').src = '';
+          }
+        });
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem('usuario');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

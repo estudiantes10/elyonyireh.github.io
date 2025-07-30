@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+      .login-box, .panel {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 50px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+        position: relative;
+        }
+
+    .logo {
+      width: 80px;
+      border-radius: 30% 90% 30%90% / 90% 90% 10% 90%;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 28px;
+      color: #1e88e5;
+      font-size: 2.3em;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 18px #dddddd, 0 1px 0 #030202, 0 0 32px #03b3df;
+      background: linear-gradient(90deg, #1e88e5 60%, #000000 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-radius: 18px;
+      padding: 10px 0 10px 0;
+      transition: font-size 0.3s, text-shadow 0.3s;
+      animation: fadeInTitle 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+      position: relative;
+      overflow: visible;
+    }
+
+    @keyframes fadeInTitle {
+      0% { opacity: 0; transform: translateY(-40px) scale(0.8) skewX(-8deg); filter: blur(8px); }
+      60% { opacity: 1; transform: translateY(8px) scale(1.05) skewX(2deg); filter: blur(0); }
+      100% { opacity: 1; transform: translateY(0) scale(1) skewX(0); filter: blur(0); }
+    }
+    h2::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: -8px;
+      width: 60px;
+      height: 6px;
+      background: linear-gradient(90deg, #000000 0%, #000000 100%);
+      border-radius: 6px;
+      transform: translateX(-50%);
+      opacity: 0.7;
+      filter: blur(2px);
+      animation: glowBar 2.2s 0.5s both;
+    }
+    @keyframes glowBar {
+      0% { width: 0; opacity: 0; }
+      60% { width: 80px; opacity: 1; }
+      100% { width: 60px; opacity: 0.7; }
+    }
+
+    .textbox {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .textbox input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #cccccc;
+      border-radius: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    button {
+        position: relative;
+        width: 80%;
+        padding: 12px 20px;
+        border-radius: 7px;
+        border: 1px solid rgb(119, 144, 226);
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 2px;
+        background: transparent;
+        color: #307ab6;
+        overflow: hidden;
+        box-shadow: 0 0 0 0 transparent;
+        -webkit-transition: all 0.2s ease-in;
+        -moz-transition: all 0.2s ease-in;
+        transition: all 0.2s ease-in;
+        }
+
+        button:hover {
+        background: rgb(61, 106, 255);
+        box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
+        }
+
+        button:hover::before {
+        -webkit-animation: sh02 0.5s 0s linear;
+        -moz-animation: sh02 0.5s 0s linear;
+        animation: sh02 0.5s 0s linear;
+        }
+
+        button::before {
+        content: '';
+        display: block;
+        width: 0px;
+        height: 86%;
+        position: absolute;
+        top: 7%;
+        left: 0%;
+        opacity: 0;
+        background: #fff;
+        box-shadow: 0 0 50px 30px #fff;
+        -webkit-transform: skewX(-20deg);
+        -moz-transform: skewX(-20deg);
+        -ms-transform: skewX(-20deg);
+        -o-transform: skewX(-20deg);
+        transform: skewX(-20deg);
+        }
+
+        @keyframes sh02 {
+        from {
+            opacity: 0;
+            left: 0%;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            left: 100%;
+        }
+        }
+
+        button:active {
+        box-shadow: 0 0 0 0 transparent;
+        -webkit-transition: box-shadow 0.2s ease-in;
+        -moz-transition: box-shadow 0.2s ease-in;
+        transition: box-shadow 0.2s ease-in;
+        }
+
+
+        .forgot-password {
+        margin-top: 15px;
+        font-size: 14px;
+        }
+
+        .forgot-password a {
+        color: #1e90ff;
+        text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+        text-decoration: underline;
+        }
+
+        .panel button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #1bafd4;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        }
+
+        .panel button:hover {
+        background-color: #2d74b6;
+    }
+
+    .panel-btn {
+        width: 100%;
+        padding: 18px 0 18px 60px;
+        margin: 18px 0;
+        background: linear-gradient(90deg, #1e88e5 60%, #16baec 100%);
+        color: #fff;
+        border: none;
+        border-radius: 40px 15px 40px 15px / 15px 40px 15px 40px;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 4px 18px rgba(30,136,229,0.13);
+        position: relative;
+        text-align: left;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+        overflow: hidden;
+        display: block;
+    }
+    .panel-btn:hover {
+        background: linear-gradient(90deg, #16baec 60%, #1e88e5 100%);
+        box-shadow: 0 8px 32px rgba(30,136,229,0.18);
+        transform: scale(1.04) translateY(-2px);
+    }
+    .panel-btn .icon {
+  position: static;
+  margin-left: 18px;
+  font-size: 1.5em;
+  background: #fff;
+  color: #1e88e5;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(30,136,229,0.10);
+  transition: background 0.3s, color 0.3s;
+}
+    .panel-btn:hover .icon {
+        background: #1e88e5;
+        color: #fff;
+    }
+        
+    </style>
+</head>
+<body>
+  <!-- Fondo dinámico moderno -->
+  <div id="bg-gradient" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;overflow:hidden;pointer-events:none;">
+    <div class="bubble" style="left:8vw;top:12vh;"></div>
+    <div class="bubble" style="right:10vw;top:18vh;"></div>
+    <div class="bubble" style="left:18vw;bottom:10vh;"></div>
+    <div class="bubble" style="right:18vw;bottom:8vh;"></div>
+  </div>
+  <style>
+    body {
+      background: linear-gradient(120deg, #e0f7fa 0%, #b3e5fc 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+    #bg-gradient {
+      background: linear-gradient(120deg, #e0f7fa 0%, #b3e5fc 100%);
+      z-index: 0;
+    }
+    .bubble {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e88e5 60%, #43e97b 100%);
+      opacity: 0.13;
+      filter: blur(2px);
+      animation: floatBubble 8s ease-in-out infinite;
+    }
+    .bubble:nth-child(2) { width: 120px; height: 120px; background: linear-gradient(135deg, #8e24aa 60%, #16baec 100%); animation-delay: 2s; }
+    .bubble:nth-child(3) { width: 140px; height: 140px; background: linear-gradient(135deg, #43e97b 60%, #1e88e5 100%); animation-delay: 4s; }
+    .bubble:nth-child(4) { width: 100px; height: 100px; background: linear-gradient(135deg, #16baec 60%, #8e24aa 100%); animation-delay: 6s; }
+    @keyframes floatBubble {
+      0%,100% { transform: translateY(-18px) scale(1); }
+      50% { transform: translateY(24px) scale(1.08); }
+    }
+  </style>
+  <div class="panel" id="panel">
+  
+  <h2>Panel Principal</h2>
+  <button class="panel-btn" onclick="window.location.href='hoja_vida.html'"><span class="icon">📄</span> Hojas de Vida</button>
+  <button class="panel-btn" onclick="window.location.href='etapa_p.html'"><span class="icon">📝</span> Etapa de Práctica</button>
+  <button class="panel-btn" onclick="window.location.href='paz_salvo.html'"><span class="icon">✅</span> Paz y Salvo</button>
+  <button class="panel-btn" onclick="window.location.href='inicio.html'"><span class="icon">🚪</span> Cerrar Sesión</button>
+
+
+</body>
+</html>

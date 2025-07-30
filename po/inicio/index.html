@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portal de Inicio de Sesión</title>
+      
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .navbar {
+      width: 100%;
+      background: linear-gradient(90deg, #89b1d4 60%, #5a8bb7 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px 0 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 101;
+      height: 70px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+      transition: box-shadow 0.3s;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .navbar-logo img {
+      height: 48px;
+      width: 48px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      background: #fff;
+      transition: transform 0.3s;
+    }
+    .navbar-logo img:hover {
+      transform: scale(1.08) rotate(-6deg);
+    }
+
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      font-size: 17px;
+      flex: 1;
+    }
+    .navbar-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 8px 22px;
+      border-radius: 22px;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+      background: linear-gradient(90deg, #1e88e5 60%, #16baec 100%);
+      box-shadow: 0 2px 12px rgba(30,136,229,0.13);
+      font-size: 18px;
+      letter-spacing: 1px;
+      border: 2px solid #fff;
+      font-family: inherit;
+      cursor: pointer;
+      margin: 0 auto;
+      font-weight: bold;
+    }
+    .navbar-links a:hover {
+      background: #fff;
+      color: #1e88e5;
+      box-shadow: 0 4px 18px rgba(30,136,229,0.18);
+      border: 2px solid #1e88e5;
+      transform: scale(1.08) translateY(-2px);
+      text-shadow: 0 2px 8px #b3e5fc;
+    }
+    .navbar-links a::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s, left 0.3s;
+    }
+    .navbar-links a:hover::after {
+      width: 80%;
+      left: 10%;
+    }
+
+    .bienvenida-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 90px;
+      margin-bottom: 120px;
+      gap: 40px;
+      min-height: 60vh;
+    }
+    .bienvenida-box {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(30,136,229,0.10);
+      padding: 36px 32px;
+      max-width: 480px;
+      font-size: 18px;
+      color: #1e88e5;
+      animation: fadeInUp 1s;
+    }
+    .bienvenida-box h1 {
+      font-size: 2.2em;
+      margin-bottom: 18px;
+      color: #1565c0;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .bienvenida-box ul {
+      margin: 18px 0 18px 20px;
+      padding: 0;
+      color: #1976d2;
+    }
+    .bienvenida-box li {
+      margin-bottom: 8px;
+      font-size: 1em;
+    }
+    .imagenes-dinamicas {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+    }
+    .img-dinamica {
+      width: 280px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(30,136,229,0.13);
+      animation: floatImg 2.5s infinite alternate;
+      transition: transform 0.4s;
+    }
+    .img-dinamica:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 6px 24px rgba(30,136,229,0.18);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatImg {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-18px); }
+    }
+    @media (max-width: 900px) {
+      .bienvenida-container {
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 80px;
+        margin-bottom: 110px;
+        min-height: 50vh;
+        padding: 0 10px;
+      }
+      .bienvenida-box {
+        max-width: 98vw;
+        padding: 24px 10px;
+        font-size: 16px;
+      }
+      .imagenes-dinamicas {
+        flex-direction: row;
+        gap: 16px;
+        min-width: unset;
+        width: 100%;
+        justify-content: center;
+      }
+      .img-dinamica {
+        width: 44vw;
+        min-width: 120px;
+        max-width: 180px;
+        height: 110px;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 8px;
+      }
+      .navbar-logo span {
+        font-size: 18px;
+      }
+      .navbar-links {
+        gap: 12px;
+        font-size: 15px;
+      }
+      .bienvenida-box h1 {
+        font-size: 1.3em;
+      }
+      .bienvenida-box {
+        padding: 16px 4px;
+        font-size: 15px;
+      }
+      .img-dinamica {
+        width: 120px;
+        height: 70px;
+      }
+      footer {
+        font-size: 13px !important;
+        padding: 10px 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src="../img/logo.png" alt="Logo" />
+      <span style="font-size:22px;font-weight:600;letter-spacing:1px;">Portal Prácticas</span>
+    </div>
+    <div class="navbar-links">
+      <a href="../portal_practicas/inicio.html" style="margin: 0 auto;">Iniciar Sesión</a>
+    </div>
+  </nav>
+
+  <main class="bienvenida-container">
+    <section class="bienvenida-box">
+      <h1>¡Bienvenido al Portal de Prácticas!</h1>
+      <p>
+        Este portal está diseñado para facilitar la gestión y seguimiento de las prácticas estudiantiles en la Institución Educativa Elyon Yireh. Aquí podrás:
+      </p>
+      <ul>
+        <li>Acceder a documentos importantes y reportes.</li>
+        <li>Ver el estado de tu proceso y descargar certificados.</li>
+        <li>Contactar al equipo de prácticas para soporte.</li>
+      </ul>
+      <p>
+        Explora las diferentes secciones usando la barra de navegación superior.
+      </p>
+    </section>
+    <section class="imagenes-dinamicas">
+      <img src="../img/foto1.jpg" alt="Estudiantes" class="img-dinamica" />
+      <img src="../img/foto2.jpg" alt="Prácticas" class="img-dinamica" />
+      <img src="../img/foto3.jpg" alt="Certificados" class="img-dinamica" />
+    </section>
+  </main>
+  
+
+
+<footer style="width:100%;background:#f0f8ff;color:#000000;text-align:center;padding:20px 0; margin:0;position:fixed;left:0;bottom:0;font-size:16px;letter-spacing:1px;z-index:100;">
+  Portal de Prácticas | Contacto: practicas@elyonyireh.edu.co | © 2025 Institución Educativa
+</footer>
+    

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestor de Documentos Digitalizados</title>
+  <style>
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f7f9fb;
+      margin: 0;
+      min-height: 100vh;
+      color: #222;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #b3e5fc33;
+      padding: 32px 24px 24px 24px;
+    }
+    h1 {
+      text-align: center;
+      color: #1e88e5;
+      margin-bottom: 28px;
+    }
+    .doc-section {
+      margin-bottom: 32px;
+    }
+    .doc-section:last-child {
+      margin-bottom: 0;
+    }
+    .doc-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1976d2;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .doc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px 0;
+    }
+    .doc-list li {
+      background: #f7fbff;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px #b3e5fc22;
+    }
+    .doc-list li:last-child { margin-bottom: 0; }
+    .doc-list a {
+      color: #1e88e5;
+      text-decoration: underline;
+      font-weight: 500;
+      margin-right: 12px;
+    }
+    .btn-delete {
+      background: #e53935;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-delete:hover { background: #b71c1c; }
+    .btn-upload {
+      background: linear-gradient(90deg,#43e97b,#38f9d7);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 22px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 6px;
+      margin-bottom: 10px;
+      transition: background 0.2s;
+    }
+    .btn-upload:hover { background: #1e88e5; }
+    .doc-icon {
+      font-size: 20px;
+      margin-right: 6px;
+      color: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gestor de Documentos Digitalizados</h1>
+    <div class="doc-section" id="sec-hojas">
+      <div class="doc-title"><span class="doc-icon">📄</span>Hojas de Vida</div>
+      <ul class="doc-list" id="list-hojas"></ul>
+      <input type="file" id="input-hojas" style="display:none" accept="application/pdf,image/*" />
+      <button class="btn-upload" onclick="document.getElementById('input-hojas').click()">Adjuntar Hoja de Vida</button>
+    </div>
+    <div class="doc-section" id="sec-paz">
+      <div class="doc-title"><span class="doc-icon">✅</span>Paz y Salvo</div>
+      <ul class="doc-list" id="list-paz"></ul>
+      <input type="file" id="input-paz" style="display:none" accept="application/pdf,image/*" />
+      <button class="btn-upload" onclick="document.getElementById('input-paz').click()">Adjuntar Paz y Salvo</button>
+    </div>
+    <div class="doc-section" id="sec-etapa">
+      <div class="doc-title"><span class="doc-icon">📝</span>Etapa de Prácticas</div>
+      <ul class="doc-list" id="list-etapa"></ul>
+      <input type="file" id="input-etapa" style="display:none" accept="application/pdf,image/*" />
+      <button class="btn-upload" onclick="document.getElementById('input-etapa').click()">Adjuntar Documento</button>
+    </div>
+    <div class="doc-section" id="sec-convenios">
+      <div class="doc-title"><span class="doc-icon">🤝</span>Convenios</div>
+      <ul class="doc-list" id="list-convenios"></ul>
+      <input type="file" id="input-convenios" style="display:none" accept="application/pdf,image/*" />
+      <button class="btn-upload" onclick="document.getElementById('input-convenios').click()">Adjuntar Convenio</button>
+    </div>
+  </div>
+  <script>
+    // Simulación: los archivos se guardan solo en memoria (no en backend)
+    const docs = {
+      hojas: [], paz: [], etapa: [], convenios: []
+    };
+    function renderList(tipo) {
+      const ul = document.getElementById('list-' + tipo);
+      ul.innerHTML = '';
+      docs[tipo].forEach((file, idx) => {
+        ul.innerHTML += `<li><a href="${file.url}" target="_blank">${file.name}</a><button class="btn-delete" onclick="deleteDoc('${tipo}',${idx})">Eliminar</button></li>`;
+      });
+    }
+    function addDoc(tipo, file) {
+      const url = URL.createObjectURL(file);
+      docs[tipo].push({ name: file.name, url });
+      renderList(tipo);
+    }
+    function deleteDoc(tipo, idx) {
+      docs[tipo].splice(idx, 1);
+      renderList(tipo);
+    }
+    document.getElementById('input-hojas').addEventListener('change', function(e) {
+      if (e.target.files[0]) addDoc('hojas', e.target.files[0]);
+      e.target.value = '';
+    });
+    document.getElementById('input-paz').addEventListener('change', function(e) {
+      if (e.target.files[0]) addDoc('paz', e.target.files[0]);
+      e.target.value = '';
+    });
+    document.getElementById('input-etapa').addEventListener('change', function(e) {
+      if (e.target.files[0]) addDoc('etapa', e.target.files[0]);
+      e.target.value = '';
+    });
+    document.getElementById('input-convenios').addEventListener('change', function(e) {
+      if (e.target.files[0]) addDoc('convenios', e.target.files[0]);
+      e.target.value = '';
+    });
+    // Inicializar listas vacías
+    renderList('hojas');
+    renderList('paz');
+    renderList('etapa');
+    renderList('convenios');
+  </script>
+</body>
+</html>
